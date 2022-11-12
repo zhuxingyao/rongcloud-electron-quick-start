@@ -2,18 +2,22 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+const RongIMLib = require('@rongcloud/electron-solution')
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // mainWindow.loadFile('index.html')
+  mainWindow.loadFile('calllib-v5-demo/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -23,12 +27,34 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  const rcService = RongIMLib({
+    /**
+     * [option]
+     */
+    dbPath: app.getPath('userData'),
+    /**
+     * [option] 0 - DEBUG, 1 - INFO, 2(default) - WARN, 3 - ERROR
+     */
+    logLevel: 2,
+    /**
+     * [option]
+     */
+    logStdout (logLevel, tag, ...args) {
+      console.log(tag, ...args)
+    }
+  })
+
   createWindow()
+
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+
+  app.on('before-quit', () => {
+    rcService.getCppProto().destroy()
   })
 })
 
