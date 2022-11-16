@@ -26,6 +26,12 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+app.commandLine.appendSwitch('ignore-certificate-errors')
+// app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+//   //允许私有证书
+//   event.preventDefault()
+//   callback(true)
+// });
 app.whenReady().then(() => {
   const rcService = RongIMLib({
     /**
@@ -46,7 +52,7 @@ app.whenReady().then(() => {
 
   createWindow()
 
-
+  
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

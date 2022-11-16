@@ -22,7 +22,8 @@ const connectIM = () => {
   // IM 客户端初始化
   RongIMLib.RongIMClient.init(appkey, null, {
     navi: navi || null,
-    logLevel: 1
+    logLevel: 1,
+    checkCA:false
   });
   imClient = RongIMLib.RongIMClient.getInstance();
 
