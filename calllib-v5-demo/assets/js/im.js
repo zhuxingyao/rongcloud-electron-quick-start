@@ -62,3 +62,25 @@ const connectIM = () => {
     }
   });
 }
+
+const reconnect = () => {
+  const paramToken = RCDom.get('paramToken').value;
+  imClient.logout()
+  setTimeout(function(){
+    RongIMClient.connect(paramToken, {
+      onSuccess: function(userId) {
+        // RCCallView.connectedIM();
+        // RCCallView.readyToCall();
+        RCDom.get('rongUserId').innerText = userId;
+        RCToast(`用户 ${userId} IM 链接成功 ✌🏻`);
+      },
+      onTokenIncorrect: function() {
+        RCToast('连接失败, 失败原因: token 无效');
+      },
+      onError: function(errorCode) {
+        RCToast(`连接失败, 失败原因: ${errorCode}`);
+      }
+    });
+  },200)
+  
+}
