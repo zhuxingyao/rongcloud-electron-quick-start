@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const RCInit = require('@rongcloud/electron')
+
+let rcService
 
 function createWindow () {
   // Create the browser window.
@@ -8,12 +11,13 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('api-test-v2/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -23,12 +27,41 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  
+   // 在 app 的 ready 事件通知后进行初始化
+   rcService = RCInit({
+    /**
+     * 【必填】Appkey , 自 5.6.0 版本起，必须填该参数
+     * [option]
+     */
+    appkey: 'c9kqb3rdc25yj',
+    /**
+     * 【选填】消息数据库的存储位置，不推荐修改
+     * [option]
+     */
+    dbPath: app.getPath('userData'),
+    /**
+     * 【选填】日志等级
+     * [option] 0 - DEBUG, 1 - INFO, 2(default) - WARN, 3 - ERROR
+     */
+    logLevel: 2,
+    /**
+     * 【选填】当需要对 SDK 内的日志落盘时，在此实现落盘方法
+     * [option]
+     */
+    logStdout (logLevel, tag, ...args) {
+      console.log(tag, ...args)
+    }
+  })
   createWindow()
-
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+  app.on('before-quit', () => {
+    // 在 app 退出时清理状态
+    rcService.getCppProto().destroy()
   })
 })
 
