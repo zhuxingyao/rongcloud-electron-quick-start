@@ -17,9 +17,9 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^16.0.1"
+    "electron": "16.0.1"
   },
   "dependencies": {
-    "@rongcloud/electron-solution": "^1.1.9-enterprise.17"
+    "@rongcloud/electron-solution": "1.1.9-enterprise.17"
   }
 }

@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, desktopCapturer,mainWindow,ipcMain} = require('electron')
 const path = require('path')
 
 const RongIMLib = require('@rongcloud/electron-solution')
@@ -17,7 +17,8 @@ function createWindow () {
 
   // and load the index.html of the app.
   // mainWindow.loadFile('index.html')
-  mainWindow.loadFile('calllib-v5-demo/index.html')
+  // mainWindow.loadFile('calllib-v5-demo/index.html')
+  mainWindow.loadFile('rtclib-v5-meeting/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -51,7 +52,11 @@ app.whenReady().then(() => {
   })
 
   createWindow()
-
+  ipcMain.on('GET_SOURCE_LIST',(event)=>{
+    desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
+      event.sender.send('SET_SOURCE_LIST', sources)
+    })
+  })
   
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -62,6 +67,7 @@ app.whenReady().then(() => {
   app.on('before-quit', () => {
     rcService.getCppProto().destroy()
   })
+  
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

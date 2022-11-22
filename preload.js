@@ -13,4 +13,7 @@
 
 require('@rongcloud/electron-solution/renderer')
 
-console.log('加载 preload')
+// 渲染器进程
+const { ipcRenderer } = require('electron')
+window.ipcRenderer = ipcRenderer
+
