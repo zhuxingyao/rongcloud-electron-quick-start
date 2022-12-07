@@ -17,7 +17,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('api-test-v2/index.html')
+  mainWindow.loadFile('api-test-v5/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

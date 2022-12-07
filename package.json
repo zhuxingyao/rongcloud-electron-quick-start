@@ -17,10 +17,10 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^16.0.1"
+    "electron": "16.0.1"
   },
   "dependencies": {
-    "@rongcloud/electron": "^5.6.0",
-    "@rongcloud/electron-renderer": "^5.6.0"
+    "@rongcloud/electron": "5.6.0",
+    "@rongcloud/electron-renderer": "5.6.0"
   }
 }
