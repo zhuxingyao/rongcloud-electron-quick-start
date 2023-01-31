@@ -463,6 +463,10 @@
         data.joinBtn = true
         data.setBtn = data.showInputBtn = data.showId = data.showUId = data.showKey = data.showVal = data.showMsg = false
       },
+      openWindow: function() {
+        console.log('openWindow')
+        window.ipcRenderer.send('open-window')
+      },
       exJoin (type) {
         var data = vueInstance.exData
         data.type = type

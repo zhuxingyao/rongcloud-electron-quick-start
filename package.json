@@ -4,7 +4,9 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev":"\"npm run start\" \"npm run vite\"",
+    "vite":"cd ./tencent-test && npm run dev"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "@rongcloud/electron": "^5.7.0",
-    "@rongcloud/electron-renderer": "^5.7.0"
+    "@rongcloud/electron-renderer": "^5.7.0",
+    "im_electron_sdk": "^2.0.6"
   }
 }

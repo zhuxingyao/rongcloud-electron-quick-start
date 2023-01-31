@@ -17,7 +17,7 @@
   <script src="./lib/js/es6-promise.js"></script>
 
   <!-- <script src="../packages/imlib/build/cdn/RongIMLib-5.6.1-alpha.1.js"></script> -->
-  <script src="https://cdn.ronghub.com/RongIMLib-5.7.0.prod.js"></script>
+  <script src="../../../../imlib/build/cdn/RongIMLib-5.7.1.js"></script>
   
 
 
@@ -176,6 +176,7 @@
 
       <div class="rong-opt-list">
           <i-button size="small" type="info" @click="showMsgExpansion()">消息扩展</i-button>
+          <i-button size="small" type="info" @click="openWindow()">新开窗口</i-button>
           <div v-for="(readyList, index) in readyApiQueue" v-bind:key="readyList.id" class="rong-ready-box">
             <!-- <draggable :list="readyList" group="people" @start="startDragging()" @end="isDragging=false"> -->
                 <!-- <span>{{index + 1}}</span> -->
@@ -249,5 +250,12 @@
 </body>
 
 <script src="./js/main.js"></script>
+<script>
+  // console.log('webContent RCCppEngine', RCCppEngine);
+  // console.log('webContent test', test);
+  const open = () => {
+    console.log('ipcRenderer',ipcRenderer)
+  }
+</script>
 
 </html>

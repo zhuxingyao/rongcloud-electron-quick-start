@@ -4,3 +4,8 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
+//渲染进程
+// const { ipcRenderer } = require('electron')
+// console.log('ipcRenderer',ipcRenderer)
+// ipcRenderer.send('mainWindow:close');
+console.log('test',test)

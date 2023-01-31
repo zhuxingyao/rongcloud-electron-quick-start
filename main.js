@@ -1,7 +1,8 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 const RCInit = require('@rongcloud/electron')
+// 主进程
 
 let rcService
 
@@ -19,6 +20,8 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('api-test-v5/index.html')
+  // mainWindow.loadFile('index.html')
+    // mainWindow.loadURL('http://127.0.0.1:5173/')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -64,6 +67,17 @@ app.whenReady().then(() => {
     // 在 app 退出时清理状态
     rcService.getCppProto().destroy()
   })
+  function handleOpenWindow () {
+    const mainWindow = new BrowserWindow({
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+        contextIsolation: false,
+        nodeIntegration: true
+      }
+    })
+    mainWindow.loadFile('api-test-v5/index.html')
+  }
+  ipcMain.on('open-window', handleOpenWindow)
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
