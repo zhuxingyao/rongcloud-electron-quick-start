@@ -13,7 +13,7 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: false,
+      // contextIsolation: false,
       nodeIntegration: true
     }
   })
@@ -25,6 +25,7 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+  // console.log('mainWindow.webPreferences ======',mainWindow.webContents.ipc)
 }
 
 // This method will be called when Electron has finished
@@ -71,7 +72,7 @@ app.whenReady().then(() => {
     const mainWindow = new BrowserWindow({
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
-        contextIsolation: false,
+        // contextIsolation: false,
         nodeIntegration: true
       }
     })

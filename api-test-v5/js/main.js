@@ -465,7 +465,9 @@
       },
       openWindow: function() {
         console.log('openWindow')
-        window.ipcRenderer.send('open-window')
+        localStorage.setItem("openWindow" + Math.random(),Math.random());
+        // window.ipcRenderer.send('open-window')
+        window.electronAPI.openWindow('open-window')
       },
       exJoin (type) {
         var data = vueInstance.exData

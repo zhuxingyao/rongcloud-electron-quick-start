@@ -17,7 +17,8 @@
   <script src="./lib/js/es6-promise.js"></script>
 
   <!-- <script src="../packages/imlib/build/cdn/RongIMLib-5.6.1-alpha.1.js"></script> -->
-  <script src="../../../../imlib/build/cdn/RongIMLib-5.7.1.js"></script>
+  <!-- <script src="../../../../imlib/build/cdn/RongIMLib-5.7.1.js"></script> -->
+  <script src="https://cdn.ronghub.com/RongIMLib-5.5.4.prod.js"></script>
   
 
 
@@ -247,14 +248,16 @@
     <audio ref="alarm" style="opacity: 0; position: absolute;" src="./styles/alarm.mp3"></audio>
 
   </div>
+  <button onclick="openW()">打开窗口</button>
 </body>
 
 <script src="./js/main.js"></script>
 <script>
   // console.log('webContent RCCppEngine', RCCppEngine);
   // console.log('webContent test', test);
-  const open = () => {
-    console.log('ipcRenderer',ipcRenderer)
+  function openW(){
+    console.log('openW===')
+    window.electronAPI.openWindow('open-window')
   }
 </script>
 

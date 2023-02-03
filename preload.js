@@ -43,5 +43,16 @@
     
 // }
 // contextBridge.exposeInMainWorld('test', {fntest});
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, contextBridge } = require('electron')
 window.ipcRenderer = ipcRenderer
+console.log('preload contextBridge', contextBridge)
+contextBridge.exposeInMainWorld('electronAPI', {
+    openWindow: (title) => ipcRenderer.send('open-window', title)
+})
+// try {
+//     contextBridge.exposeInMainWorld('electronAPI', {
+//         openWindow: (title) => ipcRenderer.send('open-window', title)
+//     })
+// }catch(e){
+//     console.log(e)
+// }
