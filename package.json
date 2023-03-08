@@ -19,11 +19,10 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^20.0.1"
+    "electron": "20.0.1"
   },
   "dependencies": {
-    "@rongcloud/electron": "^5.7.0",
-    "@rongcloud/electron-renderer": "^5.7.0",
-    "im_electron_sdk": "^2.0.6"
+    "@rongcloud/electron": "^5.7.2-enterprise.5",
+    "@rongcloud/electron-renderer": "^5.7.2-enterprise.5"
   }
 }

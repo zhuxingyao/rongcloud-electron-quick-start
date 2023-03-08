@@ -11,37 +11,7 @@
 //   }
 // })
 
-// require('@rongcloud/electron-renderer');
-// window.test = { 
-//     a:'a',
-//     b:'b'
-// }
-// require('./renderer')
-// const { contextBridge, webContents } = require('electron')
-// console.log('webContents ===',webContents)
-// console.log('BrowserWindow.getFocusedWindow() ===',BrowserWindow)
-// // // contextBridge.exposeInMainWorld('test1', test);
-// class test {
-//     constructor (data){
-//         this.name = data
-//     };
-//     fn(){
-//         return this.name
-//     }
-// }
-// const fntest = () => {
-//     f1 = () => {
-//         return 'f1'
-//     };
-//     f2 = () => {
-//         return 'f2'
-//     };
-//     return {
-//         f1,
-//         f2
-//     }
-    
-// }
-// contextBridge.exposeInMainWorld('test', {fntest});
+require('@rongcloud/electron-renderer');
+
 const { ipcRenderer } = require('electron')
 window.ipcRenderer = ipcRenderer
